@@ -48,56 +48,48 @@ time.sleep(1)
 # pg.screenshot('stop.png',region=(30,667,60,35))
 
 play_button_position = False
-#동영상 초기화
-# while True:
-#     time.sleep(4)
-#     if play_button_position == False:
-#         play_button_position = pg.center(pg.locateOnScreen('play.png'))
-#     pg.leftClick(play_button_position)
-#     pg.press(['left']*30)
-#
-#     pg.moveTo(35, 667)
-#     pg.moveTo(35, 550)
-#
-#     print("실행중 : ",pg.locateOnScreen('stop.png'))
-#     pg.moveTo(35, 560)
-#
-#     print("정지중 : ", pg.locateOnScreen('play.png'))
-#     if pg.locateOnScreen('check.png') == None:
-#         pg.leftClick(play_button_position)
-#         print("restart")
-#     pg.moveTo(60, 360)
-#
-#
-#
-#     while pg.locateOnScreen('next.png') == None:
-#         time.sleep(3)
-#         print(pg.locateOnScreen('next.png'))
-#
-#     pg.click(pg.center(pg.locateOnScreen('next.png')))
 
 while True:
     driver.implicitly_wait(time_to_wait=5)
 
+
     uppertag = driver.find_element_by_xpath('//*[@id="__next"]/div[2]/div[3]/div[1]/div[2]/div')
     iframes = driver.find_element_by_tag_name('iframe')
     driver.switch_to.frame(iframes)
-    time.sleep(3)
+
+    time.sleep(5)
+
     runbtn = driver.find_element_by_xpath('//*[@id="player"]/div[7]/div[3]/button')
     runbtn.click()
+    maximize = driver.find_element_by_xpath('//*[@id="player"]/div[7]/div[3]/div/button[3]/div[1]')
 
-    pg.press(['left']*30)
+
+
+    pg.press(['left']*100)
     pg.press(['right'])
     pg.press(['left'])
     pg.press(['space']*2)
-    while pg.locateOnScreen('next.png') == None:
-        time.sleep(3)
-        print(pg.locateOnScreen('next.png'))
+    runbtn.click() #정지
+    pg.hotkey('alt', 'tab')
+    time.sleep(1)
+    pg.click(pg.center(pg.locateOnScreen('video_start.png')))
+    pg.hotkey('alt', 'tab')
 
+    maximize.click()
+    runbtn.click()
+    #########녹화, 영상 시작 완료
+
+    pg.moveTo(60, 60) #마우스 치우기
+
+    while pg.locateOnScreen('next.png') == None:
+        print(pg.locateOnScreen('next.png'))
+        time.sleep(3)
+
+    pg.hotkey('alt', 'tab')
+    time.sleep(1)
+    pg.click(pg.center(pg.locateOnScreen('video_stop.png')))
+    pg.hotkey('alt', 'tab')
+    time.sleep(1)
     pg.click(pg.center(pg.locateOnScreen('next.png')))
 
 
-# pg.leftClick(play_button_position)
-# print('user pg')
-# position = pg.position()
-# pg.click(position)
