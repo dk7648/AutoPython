@@ -21,11 +21,11 @@ driver.implicitly_wait(time_to_wait=5)
 #로그인
 login_email = driver.find_element_by_xpath('//*[@id="__next"]/div/div[2]/form/input[1]')
 login_email.click()
-login_email.send_keys('id')
+login_email.send_keys('')
 
 login_password = driver.find_element_by_xpath('//*[@id="__next"]/div/div[2]/form/input[2]')
 login_password.click()
-login_password.send_keys('pw')
+login_password.send_keys('')
 
 login_button = driver.find_element_by_xpath('//*[@id="__next"]/div/div[2]/form/div[5]')
 login_button.click()
@@ -60,20 +60,31 @@ while True:
     time.sleep(5)
 
     runbtn = driver.find_element_by_xpath('//*[@id="player"]/div[7]/div[3]/button')
-    runbtn.click()
     maximize = driver.find_element_by_xpath('//*[@id="player"]/div[7]/div[3]/div/button[3]/div[1]')
+    #setting
+    pg.click(498,682)
+    #quality
+    time.sleep(1)
+    pg.click(467,627)
+    #1080p
+    time.sleep(1)
+    pg.click(447,575)
 
-
+    time.sleep(1)
+    runbtn.click()
 
     pg.press(['left']*100)
     pg.press(['right'])
     pg.press(['left'])
     pg.press(['space']*2)
     runbtn.click() #정지
+
+
+
     pg.hotkey('alt', 'tab')
     time.sleep(1)
     pg.click(pg.center(pg.locateOnScreen('video_start.png')))
-    pg.hotkey('alt', 'tab')
+    pg.hotkey('alt', 'tab'  )
 
     maximize.click()
     runbtn.click()
