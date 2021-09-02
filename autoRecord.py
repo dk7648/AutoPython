@@ -21,11 +21,11 @@ driver.implicitly_wait(time_to_wait=5)
 #로그인
 login_email = driver.find_element_by_xpath('//*[@id="__next"]/div/div[2]/form/input[1]')
 login_email.click()
-login_email.send_keys('')
+login_email.send_keys('dk7648@korea.ac.kr')
 
 login_password = driver.find_element_by_xpath('//*[@id="__next"]/div/div[2]/form/input[2]')
 login_password.click()
-login_password.send_keys('')
+login_password.send_keys('@qjackd8748')
 
 login_button = driver.find_element_by_xpath('//*[@id="__next"]/div/div[2]/form/div[5]')
 login_button.click()
@@ -37,7 +37,7 @@ driver.find_element_by_link_text('마이페이지').click()
 time.sleep(1)
 driver.find_element_by_xpath('//*[@id="__next"]/div/div[2]/div/div[2]/div[2]/div').click()
 
-time.sleep(1)
+time.sleep(10)
 
 
 
@@ -61,6 +61,8 @@ while True:
 
     runbtn = driver.find_element_by_xpath('//*[@id="player"]/div[7]/div[3]/button')
     maximize = driver.find_element_by_xpath('//*[@id="player"]/div[7]/div[3]/div/button[3]/div[1]')
+
+
     #setting
     pg.click(498,682)
     #quality
@@ -68,29 +70,37 @@ while True:
     pg.click(467,627)
     #1080p
     time.sleep(1)
-    pg.click(447,575)
+    pg.click(447,605)
 
     time.sleep(1)
-    runbtn.click()
+
+
+    if runbtn.get_attribute('class') == 'play rounded-box state-paused':
+        runbtn.click()
 
     pg.press(['left']*100)
     pg.press(['right'])
     pg.press(['left'])
     pg.press(['space']*2)
+
     runbtn.click() #정지
-
-
 
     pg.hotkey('alt', 'tab')
     time.sleep(1)
     pg.click(pg.center(pg.locateOnScreen('video_start.png')))
-    pg.hotkey('alt', 'tab'  )
+    pg.hotkey('alt', 'tab')
 
     maximize.click()
+    time.sleep(1)
     runbtn.click()
     #########녹화, 영상 시작 완료
 
     pg.moveTo(60, 60) #마우스 치우기
+
+    time.sleep(1)
+
+    if runbtn.get_attribute('class') == 'play rounded-box state-paused':
+        runbtn.click()
 
     while pg.locateOnScreen('next.png') == None:
         print(pg.locateOnScreen('next.png'))
