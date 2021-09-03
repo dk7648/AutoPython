@@ -23,42 +23,47 @@ input = input("공유 버튼 활성화 여부(on or off) : ")
 
 if input == 'on' or input == 'On' or input == 'ON':
     ##############################################################   여기를 수정해주세요!!  - ex) range(1, 3) = 1일차~2일차
-    for i in range(1, 2):
+    for i in range(4, 6):
         checks = driver.find_elements_by_link_text(i.__str__() + '일차')
 
         for check in checks:
             check.click()
             driver.implicitly_wait(time_to_wait=5)
 
-            share_button = driver.find_element_by_xpath(
-                '//*[@id="notion-app"]/div/div[2]/div[2]/div/div[2]/div[1]/div[1]/div[2]/div[1]').click()
-            restore_button = driver.find_element_by_xpath(
-                '//*[@id="notion-app"]/div/div[2]/div[3]/div/div[2]/div[2]/div/div/div/div/div/div/div[1]/div[1]/div/div[2]').click()
-            access_restore_button = driver.find_element_by_xpath('//*[@id="notion-app"]/div/div[2]/div[4]/div/div[2]/div/div[2]/div[1]').click()
-
-            driver.back()
-            driver.implicitly_wait(time_to_wait=5)
+            try:
+                share_button = driver.find_element_by_xpath(
+                    '//*[@id="notion-app"]/div/div[2]/div[2]/div/div[2]/div[1]/div[1]/div[2]/div[1]').click()
+                restore_button = driver.find_element_by_xpath(
+                    '//*[@id="notion-app"]/div/div[2]/div[3]/div/div[2]/div[2]/div/div/div/div/div/div/div[1]/div[1]/div/div[2]').click()
+                access_restore_button = driver.find_element_by_xpath('//*[@id="notion-app"]/div/div[2]/div[4]/div/div[2]/div/div[2]/div[1]').click()
+            except:
+                print("except!!")
+            finally:
+                driver.back()
+                driver.implicitly_wait(time_to_wait=5)
 
 
 elif input == 'off' or input == 'Off' or input == 'OFF':
     ##############################################################   여기를 수정해주세요!!  - ex) range(1, 3) = 1일차~2일차
-    for i in range(1, 2):
+    for i in range(4, 6):
         checks = driver.find_elements_by_link_text(i.__str__()+'일차')
 
         for check in checks:
             check.click()
             driver.implicitly_wait(time_to_wait=5)
+            try:
+                share_button = driver.find_element_by_xpath(
+                    '//*[@id="notion-app"]/div/div[2]/div[2]/div/div[2]/div[1]/div[1]/div[2]/div[1]').click()
+                web_share_button = driver.find_element_by_xpath(
+                    '//*[@id="notion-app"]/div/div[2]/div[3]/div/div[2]/div[2]/div/div/div/div/div/div/div[1]/div[1]/div[1]/div/div[3]/div/div').click()
+                access_limmit_button = driver.find_element_by_xpath(
+                    '//*[@id="notion-app"]/div/div[2]/div[4]/div/div[2]/div/div[1]/div[1]').click()
+            except:
+                print("except!!")
+            finally:
+                driver.back()
+                driver.implicitly_wait(time_to_wait=5)
 
-            share_button = driver.find_element_by_xpath(
-                '//*[@id="notion-app"]/div/div[2]/div[2]/div/div[2]/div[1]/div[1]/div[2]/div[1]').click()
-            web_share_button = driver.find_element_by_xpath(
-                '//*[@id="notion-app"]/div/div[2]/div[3]/div/div[2]/div[2]/div/div/div/div/div/div/div[1]/div[1]/div[1]/div/div[3]/div/div').click()
-            access_limmit_button = driver.find_element_by_xpath(
-                '//*[@id="notion-app"]/div/div[2]/div[4]/div/div[2]/div/div[1]/div[1]').click()
-
-            driver.back()
-            driver.implicitly_wait(time_to_wait=5)
-
-
+print("finish!!!")
 driver.close()
 
