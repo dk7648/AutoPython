@@ -5,7 +5,6 @@
 # 실행 후 표시된 페이지에서 로그인, 원하는 페이지 이동 후 콘솔에 on 또는 off를 입력해 주시면 됩니다!
 
 
-
 from selenium import webdriver
 
 driver = webdriver.Chrome(executable_path=r'C:\Users\qjack\Desktop\chromedriver.exe')
